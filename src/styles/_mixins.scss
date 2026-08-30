@@ -1,0 +1,19 @@
+@import './screens';
+
+@mixin responsive-layout-margin {
+  width: 95vw;
+  margin: 0 auto;
+
+  @media (min-width: $tablet) {
+    width: 90vw;
+  }
+
+  @media (min-width: $desktop) {
+    width: 90vw;
+    max-width: 1200px;
+  }
+}
+
+@mixin sectionPadding {
+  padding: $size-x4 0;
+}
