@@ -1,0 +1,35 @@
+@import '../../styles/mixins';
+@import '../../styles/variables';
+
+.flexGap2 {
+  display: flex;
+  gap: $size-x2;
+}
+
+.mobileFilterBar {
+  @include responsive-layout-margin;
+  @include sectionPadding;
+  @extend .flexGap2;
+}
+
+.desktopFilterBar {
+  @include responsive-layout-margin;
+  @include sectionPadding;
+  display: flex;
+  justify-content: space-between;
+  gap: $size-x4;
+  .appliedFilters {
+    display: flex;
+    align-items: center;
+    background-color: $primary;
+    border-radius: $br-small;
+    padding: $size-x1;
+    color: $white;
+    font-size: 14px;
+  }
+  .tabletButtons,
+  .desktopButtons,
+  .filterInputs {
+    @extend .flexGap2;
+  }
+}

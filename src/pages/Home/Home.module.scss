@@ -1,0 +1,12 @@
+@import '../../styles/mixins';
+@import '../../styles/variables';
+
+.mainSection {
+  border-radius: $br-extra-big;
+  margin-top: -15px;
+  background-color: $white;
+  @media (min-width: $tablet) {
+    border-radius: 0;
+    margin: 0;
+  }
+}
