@@ -8,9 +8,18 @@ type Props = {
   value: string
   onChange: (val: string) => void
   options: string[]
+  variantText?: boolean
+  disabled?: boolean
 }
 
-const CustomSelect = ({ label, value, onChange, options = [] }: Props) => {
+const CustomSelect = ({
+  label,
+  value,
+  onChange,
+  options = [],
+  variantText,
+  disabled,
+}: Props) => {
   const handleChange = (event: SelectChangeEvent) => {
     onChange(event.target.value as string)
   }
@@ -24,17 +33,42 @@ const CustomSelect = ({ label, value, onChange, options = [] }: Props) => {
 
   return (
     <FormControl sx={{ minWidth: 100 }} size="small">
-      <InputLabel id={`${label}-select-label`}>{label}</InputLabel>
-      <Select
-        id={`${label}-select`}
-        labelId={`${label}-select-label`}
-        label={label}
-        value={value}
-        onChange={handleChange}
-        autoWidth
-      >
-        {renderOptions()}
-      </Select>
+      {variantText ? (
+        <Select
+          disabled={disabled}
+          id={`${label}-select`}
+          label={label}
+          value={value}
+          displayEmpty
+          renderValue={(selected) =>
+            selected ? `${label}: ${selected}` : label
+          }
+          onChange={handleChange}
+          autoWidth
+          sx={{
+            '& .MuiOutlinedInput-notchedOutline': {
+              border: 'none',
+            },
+          }}
+        >
+          {renderOptions()}
+        </Select>
+      ) : (
+        <>
+          <InputLabel id={`${label}-select-label`}>{label}</InputLabel>
+          <Select
+            disabled={disabled}
+            id={`${label}-select`}
+            labelId={`${label}-select-label`}
+            label={label}
+            value={value}
+            onChange={handleChange}
+            autoWidth
+          >
+            {renderOptions()}
+          </Select>
+        </>
+      )}
     </FormControl>
   )
 }

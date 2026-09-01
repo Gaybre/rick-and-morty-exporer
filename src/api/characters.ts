@@ -2,6 +2,10 @@ import type { ApiResponse, CharacterFilters } from '../types/character'
 import { buildQuery } from '../utils/buildQuery'
 
 const BASE_URL = 'https://rickandmortyapi.com/api/character'
+export const ERRORS = {
+  NOT_FOUND: 'NOT_FOUND',
+  SOMETHING_WENT_WRONG: 'SOMETHING_WENT_WRONG',
+}
 
 export const getCharacters = async (
   filters: CharacterFilters = {},
@@ -10,11 +14,11 @@ export const getCharacters = async (
   const response = await fetch(query ? `${BASE_URL}?${query}` : BASE_URL)
 
   if (response.status === 404) {
-    throw new Error('NOT_FOUND')
+    throw new Error(ERRORS.NOT_FOUND)
   }
 
   if (!response.ok) {
-    throw new Error('SOMETHING_WENT_WRONG')
+    throw new Error(ERRORS.SOMETHING_WENT_WRONG)
   }
 
   return (await response.json()) as ApiResponse

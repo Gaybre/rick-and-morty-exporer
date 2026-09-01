@@ -1,4 +1,5 @@
 @import './screens';
+@import './variables';
 
 @mixin responsive-layout-margin {
   width: 95vw;
@@ -14,6 +15,6 @@
   }
 }
 
-@mixin sectionPadding {
+@mixin section-padding {
   padding: $size-x4 0;
 }

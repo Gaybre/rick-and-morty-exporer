@@ -9,6 +9,7 @@ type Props = {
   onChange: (val: string) => void
   icon?: React.ReactNode
   fullWidth?: boolean
+  disabled?: boolean
 }
 
 const CustomInput = ({
@@ -18,12 +19,14 @@ const CustomInput = ({
   onChange,
   icon,
   fullWidth,
+  disabled,
 }: Props) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     onChange(event.target.value)
 
   return (
     <TextField
+      disabled={disabled}
       fullWidth={fullWidth}
       id={`${label}-input`}
       label={label}

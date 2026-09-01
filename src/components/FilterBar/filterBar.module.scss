@@ -8,16 +8,17 @@
 
 .mobileFilterBar {
   @include responsive-layout-margin;
-  @include sectionPadding;
+  padding-top: $size-x4;
   @extend .flexGap2;
 }
 
 .desktopFilterBar {
   @include responsive-layout-margin;
-  @include sectionPadding;
+  @include section-padding;
   display: flex;
   justify-content: space-between;
   gap: $size-x4;
+  border-bottom: 2px solid $gray;
   .appliedFilters {
     display: flex;
     align-items: center;

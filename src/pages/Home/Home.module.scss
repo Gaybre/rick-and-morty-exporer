@@ -2,11 +2,17 @@
 @import '../../styles/variables';
 
 .mainSection {
-  border-radius: $br-extra-big;
+  border-top-left-radius: $br-extra-big;
+  border-top-right-radius: $br-extra-big;
   margin-top: -15px;
+  padding-bottom: $size-x4;
   background-color: $white;
   @media (min-width: $tablet) {
     border-radius: 0;
     margin: 0;
   }
+}
+
+.marginLayout {
+  @include responsive-layout-margin;
 }

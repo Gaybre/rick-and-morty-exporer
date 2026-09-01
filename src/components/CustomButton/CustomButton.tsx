@@ -5,7 +5,7 @@ type Props = {
   title: string
   type: 'text' | 'contained' | 'outlined'
   disabled?: boolean
-  onClick?: () => void
+  onClick: () => void
   size?: 'small' | 'medium' | 'large'
   icon: React.ReactNode | null
 }

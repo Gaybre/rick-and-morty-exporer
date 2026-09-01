@@ -1,0 +1,13 @@
+@import '../../styles/variables';
+@import '../../styles/screens';
+@import '../../styles/mixins';
+
+.container {
+  @include responsive-layout-margin;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc($size-x3 * 2) $size-x4;
+  @media (min-width: $tablet) {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+}
