@@ -28,8 +28,10 @@ export interface ApiResponse {
 
 export interface CharacterFilters {
   name?: string
-  status?: 'alive' | 'dead' | 'unknown'
-  gender?: 'male' | 'female' | 'genderless' | 'unknown'
+  status?: string
+  gender?: string
   species?: string
   page?: number
 }
+
+export type CharacterSort = 'name a-z' | 'name z-a' | 'none' | string

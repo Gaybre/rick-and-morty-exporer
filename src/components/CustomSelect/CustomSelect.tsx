@@ -37,12 +37,10 @@ const CustomSelect = ({
         <Select
           disabled={disabled}
           id={`${label}-select`}
-          label={label}
+          aria-label={label}
           value={value}
           displayEmpty
-          renderValue={(selected) =>
-            selected ? `${label}: ${selected}` : label
-          }
+          renderValue={(selected) => (selected ? selected : label)}
           onChange={handleChange}
           autoWidth
           sx={{

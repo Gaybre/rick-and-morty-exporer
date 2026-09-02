@@ -1,5 +1,7 @@
-import { useState } from 'react'
+import type { CharacterFilters } from '../../types/character'
+import { useEffect, useState } from 'react'
 import { useScreenSize } from '../../hooks/useScreenSize'
+import { useDebounce } from '../../hooks/useDebounce'
 import CustomButton from '../CustomButton/CustomButton'
 import CustomInput from '../CustomInput/CustomInput'
 import CustomSelect from '../CustomSelect/CustomSelect'
@@ -14,14 +16,28 @@ import {
 
 type Props = {
   loading: boolean
+  refresh: (filters: CharacterFilters) => void
 }
 
-const FilterBar = ({ loading }: Props) => {
+const FilterBar = ({ loading, refresh }: Props) => {
   const { isMobile, isTablet, isDesktop } = useScreenSize()
   const [searchValue, setSearchValue] = useState<string>('')
   const [status, setStatus] = useState<string>('')
   const [gender, setGender] = useState<string>('')
   const [species, setSpecies] = useState<string>('')
+  const debouncedSearch = useDebounce(searchValue, 1000)
+
+  const validateParam = (param: string): string =>
+    param === 'all' ? '' : param
+
+  useEffect(() => {
+    refresh({
+      name: debouncedSearch,
+      species: validateParam(species),
+      status: validateParam(status),
+      gender: validateParam(gender),
+    })
+  }, [debouncedSearch, species, status, gender, refresh])
 
   const getFiltersCount = () => {
     return [searchValue, status, gender, species].filter(
