@@ -11,6 +11,8 @@ import FilterBar from '../../components/FilterBar/FilterBar'
 import SortBar from '../../components/SortBar/SortBar'
 import Header from '../../components/Header/Header'
 import style from './Home.module.scss'
+import NotFound from '../../components/NotFound/NotFound'
+import SomethingWentWrong from '../../components/SomethingWentWrong/SomethingWentWrong'
 
 const Home = () => {
   const [data, setData] = useState<Character[]>([])
@@ -43,15 +45,9 @@ const Home = () => {
 
   const renderContent = () => {
     if (loading) {
-      return <p className={style.marginLayout}>Loading...</p>
+      return <p className={style.loading}>Loading...</p>
     } else if (error) {
-      return (
-        <p className={style.marginLayout}>
-          {error === ERRORS.NOT_FOUND
-            ? 'No characters found.'
-            : 'Something went wrong.'}
-        </p>
-      )
+      return error === ERRORS.NOT_FOUND ? <NotFound /> : <SomethingWentWrong />
     } else {
       return <CardCollection characters={sortedData} />
     }
