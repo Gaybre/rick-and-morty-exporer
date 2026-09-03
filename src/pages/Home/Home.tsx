@@ -20,6 +20,7 @@ const Home = () => {
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
   const [filters, setFilters] = useState<CharacterFilters>({})
+  const totals = useMemo(() => data.length, [data])
   const sortedData = useMemo(
     () => sortCharacters(data, sortValue),
     [sortValue, data],
@@ -33,6 +34,7 @@ const Home = () => {
         const characters = await getCharacters(filters)
         setData(characters.results)
       } catch (e) {
+        setData([])
         const errorMessage =
           e instanceof Error ? e.message : ERRORS.SOMETHING_WENT_WRONG
         setError(errorMessage)
@@ -59,7 +61,7 @@ const Home = () => {
       <section className={style.mainSection}>
         <FilterBar loading={loading} refresh={setFilters} />
         <SortBar
-          results={data.length}
+          totals={totals}
           loading={loading}
           sortValue={sortValue}
           setSortValue={setSortValue}

@@ -6,4 +6,4 @@ export const genderFilterOptions = [
   'Genderless',
   'unknown',
 ]
-export const speciesFilterOptions = ['All', 'Alien', 'Human']
+export const speciesFilterOptions = ['All', 'Alien', 'Human', 'Robot']

@@ -2,7 +2,7 @@
 @import '../../styles/variables';
 
 .header {
-  height: 110px;
+  @include header-height;
   background-image: url('../../assets/rick-and-morty-banner.jpg');
   background-repeat: no-repeat;
   background-size: cover;
@@ -11,7 +11,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 110px;
+    @include header-height;
     .text {
       color: $white;
       font-size: 1rem;
@@ -47,9 +47,7 @@
   }
 
   @media (min-width: $desktop) {
-    height: 160px;
     .headerContent {
-      height: 160px;
       .text {
         font-size: 1.3rem;
         p {

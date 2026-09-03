@@ -18,3 +18,10 @@
 @mixin section-padding {
   padding: $size-x4 0;
 }
+
+@mixin header-height {
+  height: $header-mobile-height;
+  @media (min-width: $desktop) {
+    height: $header-desktop-height;
+  }
+}

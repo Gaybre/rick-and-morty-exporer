@@ -3,16 +3,16 @@ import CustomSelect from '../CustomSelect/CustomSelect'
 import styles from './SortBar.module.scss'
 
 type Props = {
-  results: number
+  totals: number
   loading: boolean
   sortValue: CharacterSort
   setSortValue: (val: CharacterSort) => void
 }
 
-const SortBar = ({ results, loading, sortValue, setSortValue }: Props) => {
+const SortBar = ({ totals, loading, sortValue, setSortValue }: Props) => {
   return (
     <div className={styles.sortBar}>
-      <p>Total results: {results}</p>
+      <p>Total results: {totals}</p>
       <div className={styles.selectWrapper}>
         {sortValue && <span>Sort by:</span>}
         <CustomSelect
