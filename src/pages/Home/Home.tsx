@@ -20,7 +20,6 @@ const Home = () => {
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
   const [filters, setFilters] = useState<CharacterFilters>({})
-  const totals = useMemo(() => data.length, [data])
   const sortedData = useMemo(
     () => sortCharacters(data, sortValue),
     [sortValue, data],
@@ -61,7 +60,7 @@ const Home = () => {
       <section className={style.mainSection}>
         <FilterBar loading={loading} refresh={setFilters} />
         <SortBar
-          totals={totals}
+          totals={data.length}
           loading={loading}
           sortValue={sortValue}
           setSortValue={setSortValue}

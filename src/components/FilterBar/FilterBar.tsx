@@ -5,7 +5,7 @@ import { useDebounce } from '../../hooks/useDebounce'
 import CustomButton from '../CustomButton/CustomButton'
 import CustomInput from '../CustomInput/CustomInput'
 import CustomSelect from '../CustomSelect/CustomSelect'
-import { Badge, IconButton, Button } from '@mui/material'
+import { Badge, Button } from '@mui/material'
 import { icons } from '../Icons/Icons'
 import style from './filterBar.module.scss'
 import {
@@ -52,26 +52,68 @@ const FilterBar = ({ loading, refresh }: Props) => {
     setSpecies('')
   }
 
+  const renderMobileButtons = () => {
+    return (
+      <>
+        <Button
+          disabled={loading}
+          variant="outlined"
+          aria-label="Delete"
+          sx={{ minWidth: 40, width: 40, height: 40, p: 1 }}
+          onClick={clearFilters}
+        >
+          {icons.delete}
+        </Button>
+        <div className={style.appliedFilters}>
+          <Badge badgeContent={getFiltersCount()} color="default">
+            {icons.filter}
+          </Badge>
+        </div>
+      </>
+    )
+  }
+
   return isMobile ? (
     <div className={style.mobileFilterBar}>
-      <CustomInput
-        disabled={loading}
-        size="small"
-        label="Search character"
-        value={searchValue}
-        onChange={setSearchValue}
-        icon={icons.search}
-        fullWidth
-      />
-      <IconButton aria-label="Filter button" disabled={loading}>
-        <Badge badgeContent={getFiltersCount()} color="primary">
-          {icons.filter}
-        </Badge>
-      </IconButton>
+      <div>
+        <CustomInput
+          disabled={loading}
+          size="small"
+          label="Search character"
+          value={searchValue}
+          onChange={setSearchValue}
+          icon={icons.search}
+          fullWidth
+        />
+        {renderMobileButtons()}
+      </div>
+      <div>
+        <CustomSelect
+          disabled={loading}
+          label="Status"
+          value={status}
+          onChange={setStatus}
+          options={statusFilterOptions}
+        />
+        <CustomSelect
+          disabled={loading}
+          label="Gender"
+          value={gender}
+          onChange={setGender}
+          options={genderFilterOptions}
+        />
+        <CustomSelect
+          disabled={loading}
+          label="Species"
+          value={species}
+          onChange={setSpecies}
+          options={speciesFilterOptions}
+        />
+      </div>
     </div>
   ) : (
     <div className={style.desktopFilterBar}>
-      <div className={style.filterInputs}>
+      <div>
         <CustomInput
           disabled={loading}
           label="Search character"
@@ -103,27 +145,10 @@ const FilterBar = ({ loading, refresh }: Props) => {
         />
       </div>
       {/* --------------- tablet buttons */}
-      {isTablet && (
-        <div className={style.tabletButtons}>
-          <Button
-            disabled={loading}
-            variant="outlined"
-            aria-label="Delete"
-            sx={{ minWidth: 40, width: 40, height: 40, p: 1 }}
-            onClick={clearFilters}
-          >
-            {icons.delete}
-          </Button>
-          <div className={style.appliedFilters}>
-            <Badge badgeContent={getFiltersCount()} color="default">
-              {icons.filter}
-            </Badge>
-          </div>
-        </div>
-      )}
+      {isTablet && <div>{renderMobileButtons()}</div>}
       {/* --------------- desktop buttons */}
       {isDesktop && (
-        <div className={style.desktopButtons}>
+        <div>
           <CustomButton
             onClick={clearFilters}
             disabled={loading}

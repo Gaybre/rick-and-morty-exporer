@@ -8,8 +8,13 @@
 
 .mobileFilterBar {
   @include responsive-layout-margin;
-  padding-top: $size-x4;
-  @extend .flexGap2;
+  > div {
+    @extend .flexGap2;
+    padding-top: $size-x4;
+  }
+  div:nth-child(2) div {
+    flex: 1;
+  }
 }
 
 .desktopFilterBar {
@@ -19,18 +24,17 @@
   justify-content: space-between;
   gap: $size-x4;
   border-bottom: 2px solid $gray;
-  .appliedFilters {
-    display: flex;
-    align-items: center;
-    background-color: $primary;
-    border-radius: $br-small;
-    padding: $size-x1;
-    color: $white;
-    font-size: 14px;
-  }
-  .tabletButtons,
-  .desktopButtons,
-  .filterInputs {
+  > div {
     @extend .flexGap2;
   }
+}
+
+.appliedFilters {
+  display: flex;
+  align-items: center;
+  background-color: $primary;
+  border-radius: $br-small;
+  padding: $size-x1;
+  color: $white;
+  font-size: 14px;
 }
