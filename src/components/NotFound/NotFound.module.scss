@@ -1,0 +1,21 @@
+@import '../../styles/mixins';
+@import '../../styles/screens';
+
+.errorContainer {
+  @include responsive-layout-margin;
+  display: grid;
+  justify-items: center;
+  img {
+    width: 80%;
+  }
+  h2 {
+    font-size: 2rem;
+    @include section-padding;
+    color: $secondary;
+  }
+  @media (min-width: $tablet) {
+    img {
+      width: 40%;
+    }
+  }
+}

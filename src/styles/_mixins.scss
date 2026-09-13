@@ -1,0 +1,27 @@
+@import './screens';
+@import './variables';
+
+@mixin responsive-layout-margin {
+  width: 95vw;
+  margin: 0 auto;
+
+  @media (min-width: $tablet) {
+    width: 90vw;
+  }
+
+  @media (min-width: $desktop) {
+    width: 90vw;
+    max-width: 1200px;
+  }
+}
+
+@mixin section-padding {
+  padding: $size-x4 0;
+}
+
+@mixin header-height {
+  height: $header-mobile-height;
+  @media (min-width: $desktop) {
+    height: $header-desktop-height;
+  }
+}

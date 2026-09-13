@@ -1,0 +1,24 @@
+@import '../../styles/mixins';
+@import '../../styles/variables';
+
+.mainSection {
+  border-top-left-radius: $br-extra-big;
+  border-top-right-radius: $br-extra-big;
+  margin-top: -15px;
+  padding-bottom: $size-x4;
+  background-color: $white;
+  min-height: calc(100vh - $header-mobile-height + 15px);
+  @media (min-width: $tablet) {
+    border-radius: 0;
+    margin: 0;
+  }
+  @media (min-width: $desktop) {
+    min-height: calc(100vh - $header-desktop-height);
+  }
+}
+
+.loading {
+  @include responsive-layout-margin;
+  @include section-padding;
+  text-align: center;
+}
