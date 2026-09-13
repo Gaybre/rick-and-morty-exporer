@@ -1,4 +1,4 @@
-import NotFoundImg from '../../assets/paz-between-worlds.png'
+import NotFoundImg from '../../assets/paz-between-worlds.webp'
 import styles from './NotFound.module.scss'
 
 const NotFound = () => {

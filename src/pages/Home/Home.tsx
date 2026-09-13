@@ -29,11 +29,11 @@ const Home = () => {
     const fetchCharacters = async () => {
       setLoading(true)
       setError('')
+      setData([])
       try {
         const characters = await getCharacters(filters)
         setData(characters.results)
       } catch (e) {
-        setData([])
         const errorMessage =
           e instanceof Error ? e.message : ERRORS.SOMETHING_WENT_WRONG
         setError(errorMessage)
@@ -65,6 +65,22 @@ const Home = () => {
           sortValue={sortValue}
           setSortValue={setSortValue}
         />
+        {/* screen reader support (class declared in styles/globals.scss) */}
+        <div role="status" className="visually-hidden">
+          {loading
+            ? 'Loading characters...'
+            : !error
+              ? `${data.length} characters found.`
+              : ''}
+        </div>
+        <div role="alert" className="visually-hidden">
+          {error === ERRORS.NOT_FOUND
+            ? 'No characters found.'
+            : error
+              ? 'Something went wrong.'
+              : ''}
+        </div>
+        {/* UI render  */}
         {renderContent()}
       </section>
     </main>

@@ -1,4 +1,4 @@
-import Error from '../../assets/something-went-wrong.png'
+import Error from '../../assets/something-went-wrong.webp'
 import styles from './../NotFound/NotFound.module.scss'
 
 const SomethingWentWrong = () => {
