@@ -1,7 +1,7 @@
 import type { ApiResponse, CharacterFilters } from '../types/character'
 import { buildQuery } from '../utils/buildQuery'
 
-const BASE_URL = 'https://rickandmortyapi.com/api/character'
+export const BASE_URL = 'https://rickandmortyapi.com/api/character'
 export const ERRORS = {
   NOT_FOUND: 'NOT_FOUND',
   SOMETHING_WENT_WRONG: 'SOMETHING_WENT_WRONG',

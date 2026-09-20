@@ -25,7 +25,7 @@ const FilterBar = ({ loading, refresh }: Props) => {
   const [status, setStatus] = useState<string>('')
   const [gender, setGender] = useState<string>('')
   const [species, setSpecies] = useState<string>('')
-  const debouncedSearch = useDebounce(searchValue, 1000)
+  const debouncedSearch = useDebounce(searchValue, 500)
 
   const validateParam = (param: string): string =>
     param === 'all' ? '' : param
@@ -64,7 +64,7 @@ const FilterBar = ({ loading, refresh }: Props) => {
         >
           {icons.delete}
         </Button>
-        <div className={style.appliedFilters}>
+        <div className={style.appliedFilters} data-testid="appliedFilters">
           <Badge badgeContent={getFiltersCount()} color="default">
             {icons.filter}
           </Badge>
@@ -87,7 +87,7 @@ const FilterBar = ({ loading, refresh }: Props) => {
         />
         {renderMobileButtons()}
       </div>
-      <div>
+      <div data-testid="mobileInputs">
         <CustomSelect
           disabled={loading}
           label="Status"
@@ -156,7 +156,10 @@ const FilterBar = ({ loading, refresh }: Props) => {
             title="Clear filters"
             icon={icons.delete}
           />
-          <div className={style.appliedFilters}>
+          <div
+            className={style.appliedFilters}
+            data-testid="appliedFilters-desktop"
+          >
             {icons.filter}
             {getFiltersCount()} FILTERS
           </div>

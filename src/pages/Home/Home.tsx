@@ -57,7 +57,7 @@ const Home = () => {
   return (
     <main>
       <Header />
-      <section className={style.mainSection}>
+      <section className={style.mainSection} data-testid="mainSection">
         <FilterBar loading={loading} refresh={setFilters} />
         <SortBar
           totals={data.length}
